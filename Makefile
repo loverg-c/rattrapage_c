@@ -5,7 +5,7 @@
 ## Login   <loverg_c@epitech.net>
 ## 
 ## Started on  Mon Jun 17 10:30:44 2013 clement lovergne
-## Last update Mon Jun 17 19:36:26 2013 clement lovergne
+## Last update Mon Jun 17 21:00:31 2013 clement lovergne
 ##
 
 NAME=		Robby
@@ -23,6 +23,7 @@ SRC=		robby/main.c				\
 		robby/telephone/error_tel.c		\
 		robby/telephone/pars_config.c		\
 		robby/vaccum/vaccum.c			\
+		robby/vaccum/display_vaccum.c		\
 		robby/kitchen/kitchen.c
 
 OBJ=		$(SRC:.c=.o)

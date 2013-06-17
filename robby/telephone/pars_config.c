@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Mon Jun 17 20:23:18 2013 clement lovergne
+** Last update Mon Jun 17 21:57:59 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -17,7 +17,7 @@
 #include	<unistd.h>
 #include	"../../dot_h/fonction.h"
 
-static char	**my_copy_line(char **res, char *line)
+char		**my_copy_line(char **res, char *line)
 {
   ssize_t	t;
 

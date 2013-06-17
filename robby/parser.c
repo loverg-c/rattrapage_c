@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 19:34:26 2013 clement lovergne
-** Last update Mon Jun 17 20:42:02 2013 clement lovergne
+** Last update Mon Jun 17 21:58:22 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -100,6 +100,7 @@ void		pars_vaccum(t_file *file)
   file->mouv_dab = pars_file(file->mouv_dab, "config/mouv_dab");
   if (file->mouv_dab[0] == NULL)
     error_message(" : Your file is empty");
+  file->mouv_dab = my_copy_line(file->mouv_dab, "0;0");
   check_pcoma(file->mouv_dab);
   while (file->mouv_dab[i])
     {

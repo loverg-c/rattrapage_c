@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Mon Jun 17 19:33:24 2013 clement lovergne
+** Last update Mon Jun 17 20:55:09 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -50,7 +50,7 @@ static void	menu(char *awns, t_file *file)
       if (my_strcmp(awns, "1") == 0)
 	stay_on_phone(file->wtd, file->com);
       else if (my_strcmp(awns, "2") == 0)
-	go_to_vaccum();
+	go_to_vaccum(file->mouv_dab);
       else if (my_strcmp(awns, "3") == 0)
 	go_to_kitchen();
       else if (my_strcmp(awns, "4") == 0)
