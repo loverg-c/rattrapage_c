@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:22:50 2013 clement lovergne
-** Last update Mon Jun 17 18:44:39 2013 clement lovergne
+** Last update Mon Jun 17 19:35:13 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -124,26 +124,4 @@ void		free_all(char **str)
       i--;
     }
   free(str);
-}
-
-void		go_to_tel(t_file *file)
-{
-  int		i;
-  int		j;
-
-  i = 0;
-  file->wtd = NULL;
-  file->wtd = pars_file(file->wtd);
-  file->com = pars_commande(file->wtd);
-  while (file->com[i])
-    {
-      j = 0;
-      while (file->com[j])
-	{
-	  if (my_strcmp(file->com[i], file->com[j]) == 0 && i != j)
-	    error_message("file : 2 * the same command");
-	  j++;
-	}
-      i++;
-    }
 }

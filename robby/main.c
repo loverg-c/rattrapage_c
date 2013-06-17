@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Mon Jun 17 18:43:46 2013 clement lovergne
+** Last update Mon Jun 17 19:33:24 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -67,7 +67,8 @@ static void	robby()
 
   if ((awns = malloc(4096 * sizeof(char*))) == NULL)
     error_message("malloc");
-  go_to_tel(&file);
+  pars_tel(&file);
+  pars_vaccum(&file);
   menu(awns, &file);
   free(awns);
   free_all(file.com);

@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 18:49:36 2013 clement lovergne
-** Last update Mon Jun 17 19:27:28 2013 clement lovergne
+** Last update Mon Jun 17 19:39:24 2013 clement lovergne
 */
 
 #ifndef		STRUCT_H_
@@ -21,6 +21,7 @@ typedef struct	s_file
 {
   char		**wtd;
   char		**com;
+  char		**mouv_dab;
 }		t_file;
 
 typedef struct	s_vaccum

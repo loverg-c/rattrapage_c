@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Mon Jun 17 18:47:33 2013 clement lovergne
+** Last update Mon Jun 17 20:23:18 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -29,7 +29,7 @@ static char	**my_copy_line(char **res, char *line)
   return (res);
 }
 
-char		**pars_file(char **res)
+char		**pars_file(char **res, char *file)
 {
   char		*commande;
   int		fd;
@@ -37,8 +37,10 @@ char		**pars_file(char **res)
   if ((res = malloc(1 * sizeof(char*))) == NULL)
     error_message("malloc");
   res[0] = NULL;
-  if ((fd = open("config/phone", O_RDONLY)) == -1)
+  if ((fd = open(file, O_RDONLY)) == -1)
     error_message("open");
+  if ((commande = malloc(4096 * sizeof(char))) == NULL)
+    error_message("malloc");
   while ((commande = get_next_line(fd, -1)) != NULL)
     res = my_copy_line(res, commande);
   res = my_copy_line(res, get_next_line(fd, 0));

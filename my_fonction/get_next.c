@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:25:07 2013 clement lovergne
-** Last update Mon Jun 17 18:43:02 2013 clement lovergne
+** Last update Mon Jun 17 20:32:18 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -66,6 +66,7 @@ static void	begin(t_get *get, int *i)
   *i += 1;
   if ((get->my_r = malloc(MY_SIZE * sizeof(char))) == NULL)
     error_message("Error malloc\n");
+  all_to_zero2(get->my_r, 0);
 }
 
 char		*get_next_line(int fd, int a)

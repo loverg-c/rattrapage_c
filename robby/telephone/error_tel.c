@@ -5,12 +5,12 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:03:03 2013 clement lovergne
-** Last update Mon Jun 17 18:44:41 2013 clement lovergne
+** Last update Mon Jun 17 20:12:25 2013 clement lovergne
 */
 
 #include	"../../dot_h/fonction.h"
 
-static int	count_pointcoma(char *str)
+int		count_pointcoma(char *str)
 {
   int		i;
   int		count;
@@ -39,9 +39,9 @@ static void	check_number(char *str)
       count++;
     }
   if (count != 2)
-    error_message(" : In config file : the end values of one line");
+    error_message(" : In phone file : the end values of one line");
   else if (str[i + 1] != '0' && str[i + 1] != '1' && str[i + 1] != '2')
-    error_message(" : In config file : end values can just take 0, 1 or 2");
+    error_message(" : In phone file : end values can just take 0, 1 or 2");
 }
 
 void		search_error(char **str)
@@ -52,12 +52,12 @@ void		search_error(char **str)
   while (str[i])
     i++;
   if (i == 0)
-    error_message(" : Your config file is empty");
+    error_message(" : Your phone file is empty");
   i = 0;
   while (str[i])
     {
       if (str[i][0] == ';' || count_pointcoma(str[i]) != 2)
-	error_message(" : In config file : mistake with \';\'");
+	error_message(" : In phone file : mistake with \';\'");
       check_number(str[i]);
       i++;
     }
