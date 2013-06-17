@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:42:49 2013 clement lovergne
-** Last update Mon Jun 17 14:12:39 2013 clement lovergne
+** Last update Mon Jun 17 17:44:17 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -54,12 +54,12 @@ int		my_strcmp(char *str1, char *str2)
   return (1);
 }
 
-void		all_to_zero(char *str, int max)
+void		all_to_zero(char *str, int *max)
 {
   int		i;
 
   i = 0;
-  while (i < max)
+  while (i < *max)
     {
       str[i] = '\0';
       i++;

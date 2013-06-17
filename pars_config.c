@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Mon Jun 17 16:18:30 2013 clement lovergne
+** Last update Mon Jun 17 17:48:07 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -68,7 +68,7 @@ static void	copy_command(char **what_todo, char **commande)
 	  j++;
 	}
       commande[i][j] = what_todo[i][j];
-      all_to_zero2(commande[i], j);
+      all_to_zero2(commande[i], &j);
       i++;
     }
   commande[i] = NULL;
@@ -78,6 +78,7 @@ char		**pars_commande(char **what_todo)
 {
   int		i;
   char		**commande;
+  int		j;
 
   search_error(what_todo);
   i = my_strlen2(what_todo);
@@ -85,5 +86,17 @@ char		**pars_commande(char **what_todo)
     error_message("malloc");
   commande[i - 1] = NULL;
   copy_command(what_todo, commande);
+  i = 0;
+  while (commande[i])
+    {
+      j = 0;
+      while (commande[i][j])
+	{
+	  if (commande[i][j] <= 'Z' && commande[i][j] >= 'A')
+	    commande[i][j] += 32;
+	  j++;
+	}
+      i++;
+    }
   return (commande);
 }

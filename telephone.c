@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:22:50 2013 clement lovergne
-** Last update Mon Jun 17 16:15:53 2013 clement lovergne
+** Last update Mon Jun 17 17:47:44 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -41,6 +41,7 @@ static int	done_it(char **what_todo,
 
   j = 0;
   i = 0;
+  my_putchar('\n');
   while (commande[i] && my_strcmp(commande[i], buffer) != 0)
     i++;
   if (commande[i] == NULL)
@@ -84,7 +85,7 @@ static void	message()
     }
   if (write(fd, &n, 1) == -1)
     error_message("write");
-  my_putchar('\n');
+  my_putchar(n);
   free(buffer);
 }
 
@@ -93,15 +94,17 @@ void		stay_on_phone(char **what_todo, char **commande)
   int		finish;
   char		*buffer;
   int		i;
+  int		max;
 
-  if ((buffer = malloc(4096 * sizeof(char*))) == NULL)
+  max = 4096;
+  if ((buffer = malloc(max * sizeof(char*))) == NULL)
     error_message("malloc");
   finish = 0;
   while (finish == 0)
     {
       display_choice(commande);
-      all_to_zero(buffer, 4096);
-      if ((i = read(0, buffer, 4096)) == -1)
+      all_to_zero(buffer, &max);
+      if ((i = read(0, buffer, max)) == -1)
        	error_message("read");
       buffer[i - 1] = '\0';
       finish = done_it(what_todo, commande, buffer);
@@ -109,7 +112,7 @@ void		stay_on_phone(char **what_todo, char **commande)
   if (finish == 2)
     message();
   free(buffer);
-  sleep(3);
+  sleep(2.5);
 }
 
 void		free_all(char **str)
@@ -141,7 +144,6 @@ void		go_to_tel(t_file *file)
 	{
 	  if (my_strcmp(file->com[i], file->com[j]) == 0 && i != j)
 	    error_message("file : 2 * the same command");
-	  printf("comj = %s, comi = %s\n", file->com[j], file->com[i]);
 	  j++;
 	}
       i++;

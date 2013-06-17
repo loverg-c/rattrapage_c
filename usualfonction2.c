@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:57:58 2013 clement lovergne
-** Last update Mon Jun 17 15:40:49 2013 clement lovergne
+** Last update Mon Jun 17 17:44:31 2013 clement lovergne
 */
 
 #include	<unistd.h>
@@ -51,11 +51,11 @@ char		*no_get_next(int *i, int *k)
   return (NULL);
 }
 
-void		all_to_zero2(char *str, int begin)
+void		all_to_zero2(char *str, int *begin)
 {
   int		i;
 
-  i = begin + 1;
+  i = *begin + 1;
   while (str[i])
     {
       str[i - 1] = '\0';

@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Mon Jun 17 16:00:04 2013 clement lovergne
+** Last update Mon Jun 17 17:46:02 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -29,8 +29,8 @@ void		my_putchar(char);
 void		my_putstr(char*);
 void		error_message(char*);
 int		my_strcmp(char*, char*);
-void		all_to_zero(char *, int);
-void		all_to_zero2(char *, int);
+void		all_to_zero(char *, int*);
+void		all_to_zero2(char *, int*);
 void		go_to_tel(t_file*);
 void		go_to_vaccum();
 void		go_to_kitchen();
