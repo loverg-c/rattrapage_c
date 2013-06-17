@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 20:57:19 2013 clement lovergne
-** Last update Mon Jun 17 21:52:36 2013 clement lovergne
+** Last update Mon Jun 17 22:10:24 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -108,6 +108,8 @@ void		try_to_mouv(char **str, t_vaccum *vaccum, char **room, int k)
       move_my_dab(vaccum, atoi(tmpx), atoi(tmpy));
       replace_maps(room, vaccum);
     }
+  if (str[k + 1])
+    vaccum->old_values = 'o';
   free(tmpx);
   free(tmpy);
 }
