@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Mon Jun 17 17:47:01 2013 clement lovergne
+** Last update Mon Jun 17 18:28:16 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -37,15 +37,13 @@ static void	menu(char *awns, t_file *file)
 {
   int		i;
   int		error;
-  int		max;
 
-  max = 4096;
   while (42)
     {
       display(&error, awns);
-      all_to_zero(awns, &max);
+      all_to_zero(awns, 4096);
       error = 0;
-      if ((i = read(0, awns, max)) == -1)
+      if ((i = read(0, awns, 4096)) == -1)
        	error_message("read");
       my_putchar('\n');
       awns[i - 1] = '\0';

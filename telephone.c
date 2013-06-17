@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:22:50 2013 clement lovergne
-** Last update Mon Jun 17 18:09:06 2013 clement lovergne
+** Last update Mon Jun 17 18:27:52 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -94,17 +94,15 @@ void		stay_on_phone(char **what_todo, char **commande)
   int		finish;
   char		*buffer;
   int		i;
-  int		max;
 
-  max = 4096;
-  if ((buffer = malloc(max * sizeof(char*))) == NULL)
+  if ((buffer = malloc(4096 * sizeof(char*))) == NULL)
     error_message("malloc");
   finish = 0;
   while (finish == 0)
     {
       display_choice(commande);
-      all_to_zero(buffer, &max);
-      if ((i = read(0, buffer, max)) == -1)
+      all_to_zero(buffer, 4096);
+      if ((i = read(0, buffer, 4096)) == -1)
        	error_message("read");
       buffer[i - 1] = '\0';
       finish = done_it(what_todo, commande, buffer);
