@@ -5,25 +5,15 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Mon Jun 17 18:29:06 2013 clement lovergne
+** Last update Mon Jun 17 18:50:35 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
 # define	FONCTION_H_
 
-typedef struct	s_get
-{
-  char		*my_r;
-  int		j;
-}		t_get;
-
-typedef struct	s_file
-{
-  char		**wtd;
-  char		**com;
-}		t_file;
-
 # define	MY_SIZE	(500)
+
+#include	"struct.h"
 
 void		my_putchar(char);
 void		my_putstr(char*);
