@@ -5,10 +5,10 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:03:03 2013 clement lovergne
-** Last update Mon Jun 17 13:39:00 2013 clement lovergne
+** Last update Mon Jun 17 18:44:41 2013 clement lovergne
 */
 
-#include	"fonction.h"
+#include	"../../dot_h/fonction.h"
 
 static int	count_pointcoma(char *str)
 {

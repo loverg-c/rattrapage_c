@@ -5,11 +5,11 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:57:58 2013 clement lovergne
-** Last update Mon Jun 17 18:28:57 2013 clement lovergne
+** Last update Mon Jun 17 18:43:27 2013 clement lovergne
 */
 
 #include	<unistd.h>
-#include	"fonction.h"
+#include	"../dot_h/fonction.h"
 
 int		my_strlen(char *str)
 {

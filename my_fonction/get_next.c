@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:25:07 2013 clement lovergne
-** Last update Mon Jun 17 18:02:01 2013 clement lovergne
+** Last update Mon Jun 17 18:43:02 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -15,7 +15,7 @@
 #include	<sys/types.h>
 #include	<sys/stat.h>
 #include	<fcntl.h>
-#include	"fonction.h"
+#include	"../dot_h/fonction.h"
 
 static char	*my_realloc(char *str)
 {

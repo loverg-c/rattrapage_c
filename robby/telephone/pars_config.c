@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Mon Jun 17 18:31:48 2013 clement lovergne
+** Last update Mon Jun 17 18:47:33 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -15,7 +15,7 @@
 #include	<stdio.h>
 #include	<string.h>
 #include	<unistd.h>
-#include	"fonction.h"
+#include	"../../dot_h/fonction.h"
 
 static char	**my_copy_line(char **res, char *line)
 {
@@ -37,7 +37,7 @@ char		**pars_file(char **res)
   if ((res = malloc(1 * sizeof(char*))) == NULL)
     error_message("malloc");
   res[0] = NULL;
-  if ((fd = open("config", O_RDONLY)) == -1)
+  if ((fd = open("config/phone", O_RDONLY)) == -1)
     error_message("open");
   while ((commande = get_next_line(fd, -1)) != NULL)
     res = my_copy_line(res, commande);

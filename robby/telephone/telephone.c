@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:22:50 2013 clement lovergne
-** Last update Mon Jun 17 18:27:52 2013 clement lovergne
+** Last update Mon Jun 17 18:44:39 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -14,7 +14,7 @@
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	<unistd.h>
-#include	"fonction.h"
+#include	"../../dot_h/fonction.h"
 
 static void	display_choice(char **commande)
 {

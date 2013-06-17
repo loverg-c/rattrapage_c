@@ -5,12 +5,12 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Mon Jun 17 18:28:16 2013 clement lovergne
+** Last update Mon Jun 17 18:43:46 2013 clement lovergne
 */
 
 #include	<stdlib.h>
 #include	<unistd.h>
-#include	"fonction.h"
+#include	"../dot_h/fonction.h"
 
 static void	display(int *error, char *awns)
 {
