@@ -3,6 +3,6 @@ Allo;Connexion Etablie;1
 Occupe;"Votre correspondant n'est pas disponible pour le moment, veuillez rappelez plus tard", Attend;0
 Fax;"*Bruit etrange ressemblant au modem 56k* Ceci est un Fax" Raccroche;1
 Non Attribue;"Le numero que vous essayez de joindre n'est pas attribuez", Raccroche;1
-Musique d'attente;*Vivaldi - Printemps* "Veuillez patientez durant ce cour délai, nous faisons tout notre possible pour que cette attente ne dure pas longtemps", Attend;0
+Musique d'attente;"*Vivaldi - Printemps* Veuillez patientez durant ce cour délai, nous faisons tout notre possible pour que cette attente ne dure pas longtemps", Attend;0
 Repondeur;"Veuillez laisser un message apres le bip .................... *BIIIIIIIIIIIIIIIP !!!!!*, (entrez un message pour Robby);2
 Doc;"Marty : 2.21 GigaWatt ! 88 Miles à l'heure !", NOM DE ZEUS, le telephone a disparu avec la delorean !;1

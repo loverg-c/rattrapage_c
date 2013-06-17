@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:25:07 2013 clement lovergne
-** Last update Mon Jun 17 17:42:18 2013 clement lovergne
+** Last update Mon Jun 17 18:02:01 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -25,6 +25,7 @@ static char	*my_realloc(char *str)
   n = 0;
   while (str[n])
     n++;
+  dest = NULL;
   if ((dest = malloc((n + MY_SIZE) * sizeof(char))) == NULL)
     error_message("Error malloc\n");
   dest = my_strcpy(dest, str);
