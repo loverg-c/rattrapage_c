@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Mon Jun 17 21:57:58 2013 clement lovergne
+** Last update Tue Jun 18 00:31:04 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -38,7 +38,10 @@ void		stay_on_phone(char**, char**);
 void		pars_vaccum(t_file*);
 int		count_pointcoma(char*);
 void		replace_maps(char**, t_vaccum*);
-void		try_to_mouv(char**, t_vaccum*, char**, int);
+int		try_to_mouv(char**, t_vaccum*, char**, int);
 char		**my_copy_line(char**, char*);
+void		my_putnbr(int);
+void            my_robby(int*, t_vaccum*);
+int             search_o(char**);
 
 #endif		/* FONCTION_H_ */

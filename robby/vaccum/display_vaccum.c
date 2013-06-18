@@ -5,26 +5,13 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 20:57:19 2013 clement lovergne
-** Last update Mon Jun 17 22:10:24 2013 clement lovergne
+** Last update Tue Jun 18 02:34:02 2013 clement lovergne
 */
 
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<unistd.h>
 #include	"../../dot_h/fonction.h"
-
-void		my_putstr2(char **str)
-{
-  int		i;
-
-  i = 0;
-  while (str[i])
-    {
-      my_putstr(str[i]);
-      my_putchar('\n');
-      i++;
-    }
-}
 
 void		replace_maps(char **room, t_vaccum *vaccum)
 {
@@ -39,11 +26,14 @@ void		replace_maps(char **room, t_vaccum *vaccum)
   if (system("clear") == -1)
     error_message("system");
   my_putstr2(room);
+  my_putstr("Nombre de cycle : ");
+  my_putnbr(vaccum->nb_cycle);
+  vaccum->nb_cycle++;
+  usleep(100000);
 }
 
 static void	move_my_dab(t_vaccum *vaccum, int x, int y)
 {
-  usleep(250000);
   vaccum->old_dab_x = vaccum->dab_x;
   vaccum->old_dab_y = vaccum->dab_y;
   if (vaccum->dab_x < x)
@@ -89,13 +79,15 @@ static char	*get_y(char *str, int *i, char *tmpy, int *j)
   return (tmpy);
 }
 
-void		try_to_mouv(char **str, t_vaccum *vaccum, char **room, int k)
+int		try_to_mouv(char **str, t_vaccum *vaccum, char **room, int k)
 {
   int		i;
   int		j;
   char		*tmpx;
   char		*tmpy;
+  int		value;
 
+  value = 0;
   j = 0;
   i = 0;
   tmpx = NULL;
@@ -103,13 +95,10 @@ void		try_to_mouv(char **str, t_vaccum *vaccum, char **room, int k)
   tmpx = get_x(str[k], &i, tmpx, &j);
   j = 0;
   tmpy = get_y(str[k], &i, tmpy, &j);
-  while (vaccum->dab_x != atoi(tmpx) || vaccum->dab_y != atoi(tmpy))
-    {
-      move_my_dab(vaccum, atoi(tmpx), atoi(tmpy));
-      replace_maps(room, vaccum);
-    }
-  if (str[k + 1])
-    vaccum->old_values = 'o';
+  move_my_dab(vaccum, atoi(tmpx), atoi(tmpy));
+  if (vaccum->dab_x == atoi(tmpx) && vaccum->dab_y == atoi(tmpy))
+    value = 1;
   free(tmpx);
   free(tmpy);
+  return (value);
 }

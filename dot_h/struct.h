@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 18:49:36 2013 clement lovergne
-** Last update Mon Jun 17 19:39:24 2013 clement lovergne
+** Last update Tue Jun 18 00:21:05 2013 clement lovergne
 */
 
 #ifndef		STRUCT_H_
@@ -35,6 +35,9 @@ typedef struct	s_vaccum
   int		old_dab_x;
   int		old_dab_y;
   char		old_values;
+  int		nb_cycle;
+  int		nb_choose;
+  char		**map;
 }		t_vaccum;
 
 #endif		/* STRUCT_H_ */

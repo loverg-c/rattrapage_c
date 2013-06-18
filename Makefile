@@ -5,7 +5,7 @@
 ## Login   <loverg_c@epitech.net>
 ## 
 ## Started on  Mon Jun 17 10:30:44 2013 clement lovergne
-## Last update Mon Jun 17 21:00:31 2013 clement lovergne
+## Last update Tue Jun 18 00:20:54 2013 clement lovergne
 ##
 
 NAME=		Robby
@@ -19,10 +19,12 @@ SRC=		robby/main.c				\
 		my_fonction/get_next.c			\
 		my_fonction/usualfonction.c		\
 		my_fonction/usualfonction2.c		\
+		my_fonction/usualfonction3.c		\
 		robby/telephone/telephone.c		\
 		robby/telephone/error_tel.c		\
 		robby/telephone/pars_config.c		\
 		robby/vaccum/vaccum.c			\
+		robby/vaccum/robby_and_vaccum.c		\
 		robby/vaccum/display_vaccum.c		\
 		robby/kitchen/kitchen.c
 

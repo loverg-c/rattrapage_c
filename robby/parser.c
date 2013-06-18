@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 19:34:26 2013 clement lovergne
-** Last update Mon Jun 17 21:58:22 2013 clement lovergne
+** Last update Tue Jun 18 02:55:08 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -59,7 +59,7 @@ static void	check_pcoma(char **mouv)
 	  count++;
 	  j++;
 	}
-      if (count >= 3 || count == 0)
+      if (count > 3 || count == 0)
 	error_message(" : In mouv_dav : value is too long or not exist");
       i++;
     }
@@ -85,7 +85,7 @@ static void	check_all_number(char *str)
     if (str[0] == '2' && str[1] != '0' && str[1] != ';')
       error_message(" : In mouv_dav : wrong values");
   i++;
-  if (str[i] > '2' || str[i] < '0')
+  if ((str[i] > '2' || str[i] < '0') && str[i + 1])
     error_message(" : In mouv_dav : wrong values");
   if (str[i] == '2' && str[i + 1] && str[i + 1] != '0')
     error_message(" : In mouv_dav : wrong values");
@@ -106,8 +106,6 @@ void		pars_vaccum(t_file *file)
     {
       if (my_strlen(file->mouv_dab[i]) > 6 || my_strlen(file->mouv_dab[i]) < 3)
 	error_message(" : In mouv_dav : value is too long or not exist");
-      my_putstr(file->mouv_dab[i]);
-      my_putchar('\n');
       check_all_number(file->mouv_dab[i]);
       i++;
     }
