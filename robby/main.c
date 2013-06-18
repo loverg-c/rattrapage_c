@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Tue Jun 18 12:18:34 2013 clement lovergne
+** Last update Tue Jun 18 16:10:30 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -52,7 +52,7 @@ static void	menu(char *awns, t_file *file)
       else if (my_strcmp(awns, "2") == 0)
 	go_to_vaccum(file->mouv_dab);
       else if (my_strcmp(awns, "3") == 0)
-	go_to_kitchen();
+	go_to_kitchen(file->frigo, file->recettes);
       else if (my_strcmp(awns, "4") == 0)
 	shut_down();
       else

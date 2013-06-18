@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Tue Jun 18 12:39:34 2013 clement lovergne
+** Last update Tue Jun 18 18:08:21 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -29,7 +29,7 @@ void		all_to_zero(char *, int);
 void		all_to_zero2(char *, int);
 char		*get_next_line(int, int);
 char		**my_copy_line(char**, char*);
-char		*no_get_next(int*, int*);
+char		*no_get_next(int*, int*, char*, t_get*);
 void		search_error(char**);
 void		pars_tel(t_file*);
 char		**pars_commande(char**);
@@ -43,9 +43,12 @@ void		my_robby(int*, t_vaccum*);
 int		search_o(char**);
 void		check_pcoma(char**);
 void		check_all_number(char*);
-void		go_to_kitchen();
+void		go_to_kitchen(char **, char**);
 void		check_validrecette(char**);
 void		check_validfrigo(char**);
 void		pars_kitchen(t_file*);
+void		my_putinlist(t_list_rec**, char**, int*);
+char		*copy_afterpc(int*, char*);
+int		go_to_pc(char*);
 
 #endif		/* FONCTION_H_ */

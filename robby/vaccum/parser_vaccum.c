@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:41:42 2013 clement lovergne
-** Last update Tue Jun 18 11:43:18 2013 clement lovergne
+** Last update Tue Jun 18 20:22:15 2013 clement lovergne
 */
 
 #include	"../../dot_h/fonction.h"
@@ -17,7 +17,7 @@ void		check_pcoma(char **mouv)
   int		count;
 
   i = 0;
-  while (mouv[i])
+  while (i < my_strlen2(mouv))
     {
       my_putchar('\n');
       if (count_pointcoma(mouv[i]) != 1)

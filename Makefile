@@ -5,7 +5,7 @@
 ## Login   <loverg_c@epitech.net>
 ## 
 ## Started on  Mon Jun 17 10:30:44 2013 clement lovergne
-## Last update Tue Jun 18 12:15:53 2013 clement lovergne
+## Last update Tue Jun 18 15:13:39 2013 clement lovergne
 ##
 
 NAME=		Robby
@@ -28,6 +28,7 @@ SRC=		robby/main.c				\
 		robby/vaccum/robby_and_vaccum.c		\
 		robby/vaccum/display_vaccum.c		\
 		robby/kitchen/kitchen.c			\
+		robby/kitchen/list.c			\
 		robby/kitchen/pars_kitchen.c
 
 

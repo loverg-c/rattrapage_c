@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 19:34:26 2013 clement lovergne
-** Last update Tue Jun 18 12:26:31 2013 clement lovergne
+** Last update Tue Jun 18 20:06:03 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -19,21 +19,31 @@
 
 static char	**pars_file(char **res, char *file)
 {
-  char		*commande;
-  int		fd;
+  FILE		*fd;
+  size_t	len;
+  int		i;
 
-  if ((res = malloc(1 * sizeof(char*))) == NULL)
+  i = 0;
+  len = 0;
+  if ((res = malloc(4096 * sizeof(char*))) == NULL)
     error_message("malloc");
-  res[0] = NULL;
-  if ((fd = open(file, O_RDONLY)) == -1)
-    error_message("open");
-  if ((commande = malloc(4096 * sizeof(char))) == NULL)
-    error_message("malloc");
-  while ((commande = get_next_line(fd, -1)) != NULL)
-    res = my_copy_line(res, commande);
-  res = my_copy_line(res, get_next_line(fd, 0));
-  free(commande);
-  close(fd);
+  while (i <= 4096)
+    {
+      if ((res[i] = malloc(4096 * sizeof(char*))) == NULL)
+	error_message("malloc");
+      all_to_zero(res[i], 4096);
+      i++;
+    }
+  if ((fd = fopen(file, "r")) == NULL)
+    error_message("fopen");
+  i = 0;
+  while (getline(&res[i], &len, fd) != -1)
+    {
+      if (res[i][my_strlen(res[i]) - 1] == '\n')
+	res[i][my_strlen(res[i]) - 1] = '\0';
+      i++;
+    }
+  //  free(commande);
   return (res);
 }
 
@@ -46,10 +56,10 @@ void		pars_tel(t_file *file)
   file->wtd = NULL;
   file->wtd = pars_file(file->wtd, "config/phone");
   file->com = pars_commande(file->wtd);
-  while (file->com[i])
+  while (i < my_strlen2(file->com))
     {
       j = 0;
-      while (file->com[j])
+      while (j < my_strlen2(file->com))
 	{
 	  if (my_strcmp(file->com[i], file->com[j]) == 0 && i != j)
 	    error_message("file : 2 * the same command");
@@ -70,7 +80,7 @@ void		pars_vaccum(t_file *file)
     error_message(" : Your file is empty");
   file->mouv_dab = my_copy_line(file->mouv_dab, "0;0");
   check_pcoma(file->mouv_dab);
-  while (file->mouv_dab[i])
+  while (i < my_strlen2(file->mouv_dab))
     {
       if (my_strlen(file->mouv_dab[i]) > 6 || my_strlen(file->mouv_dab[i]) < 3)
 	error_message(" : In mouv_dav : value is too long or not exist");

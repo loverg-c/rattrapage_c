@@ -5,9 +5,11 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:57:58 2013 clement lovergne
-** Last update Mon Jun 17 18:43:27 2013 clement lovergne
+** Last update Tue Jun 18 19:51:46 2013 clement lovergne
 */
 
+#include	<stdlib.h>
+#include	<stdio.h>
 #include	<unistd.h>
 #include	"../dot_h/fonction.h"
 
@@ -26,7 +28,7 @@ int		my_strlen2(char **str)
   int		i;
 
   i = 0;
-  while (str[i])
+  while (str[i] && str[i][0])
     i++;
   return (i);
 }
@@ -44,8 +46,9 @@ char		*my_strcpy(char *dest, char *src)
   return (dest);
 }
 
-char		*no_get_next(int *i, int *k)
+char		*no_get_next(int *i, int *k, char *buffer, t_get *get)
 {
+  all_to_zero2(buffer, 0);
   *i = -1;
   *k = 1;
   return (NULL);

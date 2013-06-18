@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:25:07 2013 clement lovergne
-** Last update Tue Jun 18 12:41:14 2013 clement lovergne
+** Last update Tue Jun 18 18:05:41 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -67,7 +67,7 @@ static void	begin(t_get *get, int *i)
   *i += 1;
   if ((get->my_r = malloc(MY_SIZE * sizeof(char))) == NULL)
     error_message("Error malloc\n");
-  all_to_zero(get->my_r, MY_SIZE);
+  //  all_to_zero(get->my_r, MY_SIZE);
 }
 
 char		*get_next_line(int fd, int a)
@@ -78,7 +78,7 @@ char		*get_next_line(int fd, int a)
   static int	k = 1;
 
   if (a == 0)
-    return (no_get_next(&i, &k));
+    return (no_get_next(&i, &k, buffer, &get));
   begin(&get, &i);
   while (get.my_r[get.j] != '\n' && k > 0)
     {

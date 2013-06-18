@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Tue Jun 18 12:20:44 2013 clement lovergne
+** Last update Tue Jun 18 19:40:17 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -16,13 +16,14 @@
 char		**my_copy_line(char **res, char *line)
 {
   ssize_t	t;
+  char		**tmp;
 
   t = my_strlen2(res);
-  if ((res = realloc(res, (t + 2) * sizeof (char*))) == NULL)
+  if ((tmp = realloc(res, (t + 2) * sizeof (char*))) == NULL)
     error_message("realloc");
-  res[t] = line;
-  res[t + 1] = NULL;
-  return (res);
+  tmp[t] = line;
+  tmp[t + 1] = NULL;
+  return (tmp);
 }
 
 static void	copy_command(char **what_todo, char **commande)
@@ -32,7 +33,7 @@ static void	copy_command(char **what_todo, char **commande)
 
   j = 0;
   i = 0;
-  while (what_todo[i])
+  while (what_todo[i][0])
     {
       j = 0;
       while (what_todo[i][j] != ';')

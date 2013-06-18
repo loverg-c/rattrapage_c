@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 12:14:35 2013 clement lovergne
-** Last update Tue Jun 18 12:23:49 2013 clement lovergne
+** Last update Tue Jun 18 20:13:39 2013 clement lovergne
 */
 
 #include	<unistd.h>
@@ -13,7 +13,7 @@
 #include	<stdlib.h>
 #include	"../../dot_h/fonction.h"
 
-static char	*copy_afterpc(int *j, char *recettes)
+char		*copy_afterpc(int *j, char *recettes)
 {
   int		i;
   char		*afterpc;
@@ -64,7 +64,7 @@ void		check_validfrigo(char **frigo)
   int		j;
 
   i = -1;
-  while (frigo[++i])
+  while (++i < my_strlen2(frigo) && frigo[i][0])
     {
       j = 0;
       my_putchar('\n');
@@ -85,7 +85,7 @@ void		check_validrecette(char **recettes)
 
   count = 0;
   i = -1;
-  while (recettes[++i])
+  while (++i < my_strlen2(recettes) && recettes[i][0])
     {
       j = 0;
       my_putchar('\n');
