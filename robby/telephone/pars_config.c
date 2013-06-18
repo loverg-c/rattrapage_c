@@ -5,15 +5,11 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Mon Jun 17 21:57:59 2013 clement lovergne
+** Last update Tue Jun 18 12:20:44 2013 clement lovergne
 */
 
-#include	<sys/types.h>
-#include	<sys/stat.h>
-#include	<fcntl.h>
 #include	<stdlib.h>
 #include	<stdio.h>
-#include	<string.h>
 #include	<unistd.h>
 #include	"../../dot_h/fonction.h"
 
@@ -26,26 +22,6 @@ char		**my_copy_line(char **res, char *line)
     error_message("realloc");
   res[t] = line;
   res[t + 1] = NULL;
-  return (res);
-}
-
-char		**pars_file(char **res, char *file)
-{
-  char		*commande;
-  int		fd;
-
-  if ((res = malloc(1 * sizeof(char*))) == NULL)
-    error_message("malloc");
-  res[0] = NULL;
-  if ((fd = open(file, O_RDONLY)) == -1)
-    error_message("open");
-  if ((commande = malloc(4096 * sizeof(char))) == NULL)
-    error_message("malloc");
-  while ((commande = get_next_line(fd, -1)) != NULL)
-    res = my_copy_line(res, commande);
-  res = my_copy_line(res, get_next_line(fd, 0));
-  free(commande);
-  close(fd);
   return (res);
 }
 

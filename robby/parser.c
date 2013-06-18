@@ -5,13 +5,37 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 19:34:26 2013 clement lovergne
-** Last update Tue Jun 18 02:55:08 2013 clement lovergne
+** Last update Tue Jun 18 12:26:31 2013 clement lovergne
 */
 
 #include	<stdlib.h>
+#include	<sys/types.h>
+#include	<sys/stat.h>
+#include	<string.h>
+#include	<fcntl.h>
 #include	<unistd.h>
 #include	<stdio.h>
 #include	"../dot_h/fonction.h"
+
+static char	**pars_file(char **res, char *file)
+{
+  char		*commande;
+  int		fd;
+
+  if ((res = malloc(1 * sizeof(char*))) == NULL)
+    error_message("malloc");
+  res[0] = NULL;
+  if ((fd = open(file, O_RDONLY)) == -1)
+    error_message("open");
+  if ((commande = malloc(4096 * sizeof(char))) == NULL)
+    error_message("malloc");
+  while ((commande = get_next_line(fd, -1)) != NULL)
+    res = my_copy_line(res, commande);
+  res = my_copy_line(res, get_next_line(fd, 0));
+  free(commande);
+  close(fd);
+  return (res);
+}
 
 void		pars_tel(t_file *file)
 {
@@ -35,62 +59,6 @@ void		pars_tel(t_file *file)
     }
 }
 
-static void	check_pcoma(char **mouv)
-{
-  int		i;
-  int		j;
-  int		count;
-
-  i = 0;
-  while (mouv[i])
-    {
-      my_putchar('\n');
-      if (count_pointcoma(mouv[i]) != 1)
-	error_message(" : In mouv_dav : mistake with \';\'");
-      j = 0;
-      count = 0;
-      while (mouv[i][j] != ';')
-	j++;
-      if (j >= 3 || j == 0)
-	error_message(" : In mouv_dav : value is too long or not exist");
-      j++;
-      while (mouv[i][j])
-	{
-	  count++;
-	  j++;
-	}
-      if (count > 3 || count == 0)
-	error_message(" : In mouv_dav : value is too long or not exist");
-      i++;
-    }
-}
-
-static void	check_all_number(char *str)
-{
-  int		i;
-
-  i = 0;
-  while (str[i])
-    {
-      if (str[i] > '9' && str[i] < '0' && str[i] != ';')
-	error_message(" : In mouv_dav : wrong values");
-      i++;
-    }
-  if ((str[0] > '2' || str[0] < '0') && str[2] == ';')
-    error_message(" : In mouv_dav : wrong values");
-  i = 0;
-  while (str[i] != ';')
-    i++;
-  if (i != 1)
-    if (str[0] == '2' && str[1] != '0' && str[1] != ';')
-      error_message(" : In mouv_dav : wrong values");
-  i++;
-  if ((str[i] > '2' || str[i] < '0') && str[i + 1])
-    error_message(" : In mouv_dav : wrong values");
-  if (str[i] == '2' && str[i + 1] && str[i + 1] != '0')
-    error_message(" : In mouv_dav : wrong values");
-}
-
 void		pars_vaccum(t_file *file)
 {
   int		i;
@@ -109,4 +77,16 @@ void		pars_vaccum(t_file *file)
       check_all_number(file->mouv_dab[i]);
       i++;
     }
+}
+
+void		pars_kitchen(t_file *file)
+{
+  file->frigo = NULL;
+  file->frigo = pars_file(file->mouv_dab, "config/frigo_Robby");
+  file->recettes = NULL;
+  file->recettes = pars_file(file->mouv_dab, "config/recettes_Robby");
+  if (file->recettes[0] == NULL || file->frigo[0] == NULL)
+    error_message(" : Your file is empty");
+  check_validfrigo(file->frigo);
+  check_validrecette(file->recettes);
 }

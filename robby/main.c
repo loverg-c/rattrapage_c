@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Mon Jun 17 20:55:09 2013 clement lovergne
+** Last update Tue Jun 18 12:18:34 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -69,10 +69,14 @@ static void	robby()
     error_message("malloc");
   pars_tel(&file);
   pars_vaccum(&file);
+  pars_kitchen(&file);
   menu(awns, &file);
   free(awns);
   free_all(file.com);
   free_all(file.wtd);
+  free_all(file.mouv_dab);
+  free_all(file.frigo);
+  free_all(file.recettes);
 }
 
 int		main()

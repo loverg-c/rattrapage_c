@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:25:07 2013 clement lovergne
-** Last update Mon Jun 17 20:32:18 2013 clement lovergne
+** Last update Tue Jun 18 12:41:14 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -28,6 +28,7 @@ static char	*my_realloc(char *str)
   dest = NULL;
   if ((dest = malloc((n + MY_SIZE) * sizeof(char))) == NULL)
     error_message("Error malloc\n");
+  all_to_zero(dest, n + MY_SIZE);
   dest = my_strcpy(dest, str);
   free(str);
   return (dest);
@@ -37,7 +38,7 @@ static char	*next(t_get *get, int k)
 {
   if (get->j != 0 && k <= 0)
     return (get->my_r);
-  free(get->my_r);
+    free(get->my_r);
   return (NULL);
 }
 
@@ -66,7 +67,7 @@ static void	begin(t_get *get, int *i)
   *i += 1;
   if ((get->my_r = malloc(MY_SIZE * sizeof(char))) == NULL)
     error_message("Error malloc\n");
-  all_to_zero2(get->my_r, 0);
+  all_to_zero(get->my_r, MY_SIZE);
 }
 
 char		*get_next_line(int fd, int a)
