@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 20:57:19 2013 clement lovergne
-** Last update Tue Jun 18 02:34:02 2013 clement lovergne
+** Last update Wed Jun 19 12:53:36 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -51,8 +51,7 @@ static void	move_my_dab(t_vaccum *vaccum, int x, int y)
 
 static char	*get_x(char *str, int *i, char *tmpx, int *j)
 {
-  while (str[*i] != ';')
-    *i += 1;
+  *i = go_to_pc(str);
   if ((tmpx = malloc((*i + 1) * sizeof(char))) == NULL)
     error_message("malloc");
   tmpx[*i] = '\0';

@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Tue Jun 18 18:08:21 2013 clement lovergne
+** Last update Wed Jun 19 12:45:14 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -21,15 +21,12 @@ void		my_putstr2(char**);
 void		my_putnbr(int);
 int		my_strlen(char*);
 int		my_strlen2(char**);
-char		*my_strcpy(char*, char*);
 int		my_strcmp(char*, char*);
 void		error_message(char*);
 void		free_all(char**);
 void		all_to_zero(char *, int);
 void		all_to_zero2(char *, int);
-char		*get_next_line(int, int);
 char		**my_copy_line(char**, char*);
-char		*no_get_next(int*, int*, char*, t_get*);
 void		search_error(char**);
 void		pars_tel(t_file*);
 char		**pars_commande(char**);

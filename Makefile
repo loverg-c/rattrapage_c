@@ -5,7 +5,7 @@
 ## Login   <loverg_c@epitech.net>
 ## 
 ## Started on  Mon Jun 17 10:30:44 2013 clement lovergne
-## Last update Tue Jun 18 15:13:39 2013 clement lovergne
+## Last update Wed Jun 19 12:46:46 2013 clement lovergne
 ##
 
 NAME=		Robby
@@ -16,10 +16,8 @@ RM=		rm -f
 
 SRC=		robby/main.c				\
 		robby/parser.c				\
-		my_fonction/get_next.c			\
 		my_fonction/usualfonction.c		\
 		my_fonction/usualfonction2.c		\
-		my_fonction/usualfonction3.c		\
 		robby/telephone/telephone.c		\
 		robby/telephone/error_tel.c		\
 		robby/telephone/pars_config.c		\

@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:34:14 2013 clement lovergne
-** Last update Tue Jun 18 16:22:20 2013 clement lovergne
+** Last update Wed Jun 19 13:14:42 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -30,10 +30,11 @@ static void	my_aff_list(t_list_rec **list_rec)
   elem = *list_rec;
   while (elem != NULL)
     {
+      my_putstr("recettes");
       my_putstr(elem->recettes);
       my_putstr("-----------");
       my_putstr(elem->type);
-      my_putstr("-----------");
+      my_putstr("\ningredients : ");
       my_putstr2(elem->ingredient);
       my_putchar('\n');
       elem = elem->next;
@@ -49,7 +50,7 @@ void		go_to_kitchen(char **frigo, char **recettes)
 
   i = 0;
   list_rec = NULL;
-  while (recettes[i])
+  while (recettes[i] && recettes[i][0])
     {
       j = go_to_pc(recettes[i]);
       j++;

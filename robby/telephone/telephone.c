@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:22:50 2013 clement lovergne
-** Last update Mon Jun 17 19:35:13 2013 clement lovergne
+** Last update Wed Jun 19 12:55:05 2013 clement lovergne
 */
 
 #include	<sys/types.h>
@@ -39,7 +39,6 @@ static int	done_it(char **what_todo,
   int		i;
   int		j;
 
-  j = 0;
   i = 0;
   my_putchar('\n');
   while (commande[i] && my_strcmp(commande[i], buffer) != 0)
@@ -49,9 +48,7 @@ static int	done_it(char **what_todo,
       my_putstr("Wrong command !\n\n");
       return (0);
     }
-  while (what_todo[i][j] != ';')
-    j++;
-  j++;
+  j = go_to_pc(what_todo[i]) + 1;
   while (what_todo[i][j] != ';')
     {
       my_putchar(what_todo[i][j]);

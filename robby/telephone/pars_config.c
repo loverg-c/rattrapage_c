@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 13:45:06 2013 clement lovergne
-** Last update Tue Jun 18 19:40:17 2013 clement lovergne
+** Last update Wed Jun 19 12:49:46 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -31,13 +31,10 @@ static void	copy_command(char **what_todo, char **commande)
   int		i;
   int		j;
 
-  j = 0;
   i = 0;
   while (what_todo[i][0])
     {
-      j = 0;
-      while (what_todo[i][j] != ';')
-	j++;
+      j = go_to_pc(what_todo[i]);
       if ((commande[i] = malloc(sizeof (char) * (j + 1))) == NULL)
 	error_message("malloc");
       j = 0;

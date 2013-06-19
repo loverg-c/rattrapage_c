@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 12:57:58 2013 clement lovergne
-** Last update Tue Jun 18 19:51:46 2013 clement lovergne
+** Last update Wed Jun 19 12:46:12 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -33,27 +33,6 @@ int		my_strlen2(char **str)
   return (i);
 }
 
-char		*my_strcpy(char *dest, char *src)
-{
-  int		k;
-
-  k = 0;
-  while (src[k] != '\0')
-    {
-      dest[k] = src[k];
-      k++;
-    }
-  return (dest);
-}
-
-char		*no_get_next(int *i, int *k, char *buffer, t_get *get)
-{
-  all_to_zero2(buffer, 0);
-  *i = -1;
-  *k = 1;
-  return (NULL);
-}
-
 void		all_to_zero2(char *str, int begin)
 {
   int		i;
@@ -65,4 +44,29 @@ void		all_to_zero2(char *str, int begin)
       i++;
     }
   str[i - 1] = '\0';
+}
+
+void            my_putstr2(char **str)
+{
+  int           i;
+
+  i = 0;
+  while (str[i])
+    {
+      my_putstr(str[i]);
+      my_putchar('\n');
+      i++;
+    }
+}
+
+void		my_putnbr(int nb)
+{
+  if (nb < 0)
+    {
+      my_putchar('-');
+      nb = 0 - nb;
+    }
+  if (nb > 9)
+    my_putnbr(nb / 10);
+  my_putchar(nb % 10 + '0');
 }

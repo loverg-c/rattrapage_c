@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 19:34:26 2013 clement lovergne
-** Last update Tue Jun 18 20:06:03 2013 clement lovergne
+** Last update Wed Jun 19 13:47:53 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -43,7 +43,6 @@ static char	**pars_file(char **res, char *file)
 	res[i][my_strlen(res[i]) - 1] = '\0';
       i++;
     }
-  //  free(commande);
   return (res);
 }
 
@@ -82,7 +81,8 @@ void		pars_vaccum(t_file *file)
   check_pcoma(file->mouv_dab);
   while (i < my_strlen2(file->mouv_dab))
     {
-      if (my_strlen(file->mouv_dab[i]) > 6 || my_strlen(file->mouv_dab[i]) < 3)
+      if (my_strlen(file->mouv_dab[i]) > 6 ||
+	  my_strlen(file->mouv_dab[i]) < 3)
 	error_message(" : In mouv_dav : value is too long or not exist");
       check_all_number(file->mouv_dab[i]);
       i++;

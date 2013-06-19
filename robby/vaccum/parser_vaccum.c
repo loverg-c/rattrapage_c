@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:41:42 2013 clement lovergne
-** Last update Tue Jun 18 20:22:15 2013 clement lovergne
+** Last update Wed Jun 19 12:52:33 2013 clement lovergne
 */
 
 #include	"../../dot_h/fonction.h"
@@ -19,13 +19,10 @@ void		check_pcoma(char **mouv)
   i = 0;
   while (i < my_strlen2(mouv))
     {
-      my_putchar('\n');
       if (count_pointcoma(mouv[i]) != 1)
 	error_message(" : In mouv_dav : mistake with \';\'");
-      j = 0;
       count = 0;
-      while (mouv[i][j] != ';')
-	j++;
+      j = go_to_pc(mouv[i]);
       if (j >= 3 || j == 0)
 	error_message(" : In mouv_dav : value is too long or not exist");
       j++;
@@ -53,9 +50,7 @@ void		check_all_number(char *str)
     }
   if ((str[0] > '2' || str[0] < '0') && str[2] == ';')
     error_message(" : In mouv_dav : wrong values");
-  i = 0;
-  while (str[i] != ';')
-    i++;
+  i = go_to_pc(str);
   if (i != 1)
     if (str[0] == '2' && str[1] != '0' && str[1] != ';')
       error_message(" : In mouv_dav : wrong values");

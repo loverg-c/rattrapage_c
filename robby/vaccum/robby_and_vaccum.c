@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 23:33:07 2013 clement lovergne
-** Last update Tue Jun 18 03:06:52 2013 clement lovergne
+** Last update Wed Jun 19 13:33:50 2013 clement lovergne
 */
 
 #include	<unistd.h>
@@ -13,6 +13,12 @@
 #include	<stdlib.h>
 #include	"../../dot_h/fonction.h"
 
+static int	set_copy_nb(int *x1, int *xc, int *y1, int *yc)
+{
+  *x1 = *xc;
+  *y1 = *yc;
+  return (1);
+}
 
 static int	check_mvt(t_vaccum *vaccum, int test_mvt, int *xs, int *ys)
 {
@@ -27,27 +33,18 @@ static int	check_mvt(t_vaccum *vaccum, int test_mvt, int *xs, int *ys)
   maxx = (vaccum->robby_x + test_mvt < 22 ? vaccum->robby_x + test_mvt : 22);
   miny = (vaccum->robby_y - test_mvt > 0 ? vaccum->robby_y - test_mvt : 0);
   maxy = (vaccum->robby_y + test_mvt < 22 ? vaccum->robby_y + test_mvt : 22);
-  x = minx;
-  y = miny;
+  set_copy_nb(&x, &minx, &y, &miny);
   while (vaccum->map[y] != NULL && y < maxy)
-    {
-      if (vaccum->map[y + 1][x + 1] == 'o' && vaccum->map[y + 1][x + 1])
-	{
-	  *xs = x;
-	  *ys = y;
-	  return (1);
-	}
+    if (vaccum->map[y + 1][x + 1] == 'o' && vaccum->map[y + 1][x + 1])
+      return (set_copy_nb(xs, &x, ys, &y));
+    else
+      if (x <= maxx && vaccum->map[y][x + 1])
+	x += 1;
       else
 	{
-	  if (x <= maxx && vaccum->map[y][x + 1])
-	    x += 1;
-	  else
-	    {
-	      x = minx;
-	      y += 1;
-	    }
+	  x = minx;
+	  y++;
 	}
-    }
   return (0);
 }
 
@@ -68,41 +65,46 @@ static void	calc_where(t_vaccum *vaccum, int *x, int *y, int i)
     }
 }
 
+static void	comp_and_set(int *v1, int *v2)
+{
+  if ((*v1 - *v2) < 0)
+    *v1 += 1;
+  else
+    *v1 -= 1;
+}
+
+static void	same_axes(t_vaccum *vaccum, int *cible_y, int *cible_x)
+{
+  vaccum->nb_choose = 2;
+  if (*cible_x == vaccum->robby_x)
+    comp_and_set(&vaccum->robby_y, cible_y);
+  else
+    comp_and_set(&vaccum->robby_x, cible_x);
+}
+
 void		my_robby(int *save_cycle, t_vaccum *vaccum)
 {
   int		i;
   int		cible_x;
   int		cible_y;
 
-  if (*save_cycle == (vaccum->nb_cycle - vaccum->nb_choose) || *save_cycle == 0)
+  if (*save_cycle == (vaccum->nb_cycle - vaccum->nb_choose) ||
+      *save_cycle == 0)
     {
       vaccum->old_robby_x = vaccum->robby_x;
       vaccum->old_robby_y = vaccum->robby_y;
-      if (vaccum->robby_y == 0)
-	vaccum->robby_y = 1;
-      if (vaccum->robby_x == 0)
-	vaccum->robby_x = 1;
+      vaccum->robby_y = (vaccum->robby_y == 0 ? 1 : vaccum->robby_y);
+      vaccum->robby_x = (vaccum->robby_x == 0 ? 1 : vaccum->robby_x);
       *save_cycle = vaccum->nb_cycle;
       i = (search_o(vaccum->map) == 0 ? 0 : 1);
       calc_where(vaccum, &cible_x, &cible_y, i);
       if (cible_x == vaccum->robby_x || cible_y == vaccum->robby_y)
-	{
-	  vaccum->nb_choose = 2;
-	  if (cible_x == vaccum->robby_x)
-	    vaccum->robby_y = (vaccum->robby_y - cible_y < 0 ?
-			       vaccum->robby_y + 1 : vaccum->robby_y - 1);
-	  else
-	    vaccum->robby_x = (vaccum->robby_x - cible_x < 0 ?
-			       vaccum->robby_x + 1 : vaccum->robby_x - 1);
-	}
+	same_axes(vaccum, &cible_y, &cible_x);
       else
 	{
 	  vaccum->nb_choose = 3;
-	  vaccum->robby_y = (vaccum->robby_y - cible_y < 0 ?
-			     vaccum->robby_y + 1 : vaccum->robby_y - 1);
-	  vaccum->robby_x = (vaccum->robby_x - cible_x < 0 ?
-			     vaccum->robby_x + 1 : vaccum->robby_x - 1);
+	  comp_and_set(&vaccum->robby_y, &cible_y);
+	  comp_and_set(&vaccum->robby_x, &cible_x);
 	}
     }
-
 }
