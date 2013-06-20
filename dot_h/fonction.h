@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Wed Jun 19 12:45:14 2013 clement lovergne
+** Last update Wed Jun 19 15:21:56 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -13,6 +13,8 @@
 
 # define	MY_SIZE	(500)
 
+#include	<sys/types.h>
+#include	<sys/stat.h>
 #include	"struct.h"
 
 void		my_putchar(char);
@@ -47,5 +49,6 @@ void		pars_kitchen(t_file*);
 void		my_putinlist(t_list_rec**, char**, int*);
 char		*copy_afterpc(int*, char*);
 int		go_to_pc(char*);
+void		*malloc_list(size_t);
 
 #endif		/* FONCTION_H_ */
