@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Wed Jun 19 15:21:56 2013 clement lovergne
+** Last update Thu Jun 20 14:49:10 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -50,5 +50,7 @@ void		my_putinlist(t_list_rec**, char**, int*);
 char		*copy_afterpc(int*, char*);
 int		go_to_pc(char*);
 void		*malloc_list(size_t);
+char		**choose_entree(t_list_rec**, char**);
+void		display_choose(char**);
 
 #endif		/* FONCTION_H_ */

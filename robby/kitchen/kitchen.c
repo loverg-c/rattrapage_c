@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:34:14 2013 clement lovergne
-** Last update Wed Jun 19 20:21:36 2013 clement lovergne
+** Last update Thu Jun 20 14:59:48 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -23,7 +23,7 @@ int		go_to_pc(char *str)
   return (i);
 }
 
-static void	my_aff_list(t_list_rec **list_rec)
+/*static void	my_aff_list(t_list_rec **list_rec)
 {
   t_list_rec *elem;
 
@@ -39,7 +39,7 @@ static void	my_aff_list(t_list_rec **list_rec)
       my_putchar('\n');
       elem = elem->next;
     }
-}
+    }*/
 
 static t_list_rec	*do_list(char **recettes)
 {
@@ -94,7 +94,7 @@ static void	check_rec(char **rec)
     }
 }
 
-static void		stock_entree(t_list_rec **rec, t_list_rec **list_entree, int j)
+static void		stock_type(t_list_rec **rec, t_list_rec **list_entree, int j)
 {
   int			i;
   t_list_rec		*elem1;
@@ -116,7 +116,7 @@ static void		stock_entree(t_list_rec **rec, t_list_rec **list_entree, int j)
   *list_entree = elem2;
 }
 
-static void    	check_entree(t_list_rec **rec, t_list_rec **list_dessert,
+static void    	check_type(t_list_rec **rec, t_list_rec **list_dessert,
 			      t_list_rec **list_entree, t_list_rec **list_plat)
 {
   t_list_rec	*elem;
@@ -128,14 +128,52 @@ static void    	check_entree(t_list_rec **rec, t_list_rec **list_dessert,
   while (elem != NULL)
     {
       if (my_strcmp(elem->type, "entree") == 0)
-	  stock_entree(rec, list_entree, j);
+	  stock_type(rec, list_entree, j);
       else if (my_strcmp(elem->type, "plat") == 0)
-	  stock_entree(rec, list_plat, j);
+	  stock_type(rec, list_plat, j);
       else if (my_strcmp(elem->type, "dessert") == 0)
-	  stock_entree(rec, list_dessert, j);
+	  stock_type(rec, list_dessert, j);
       j++;
       elem = elem->next;
     }
+}
+
+static int	what_he_choose()
+{
+  char		*awns;
+  int		i;
+
+  if ((awns = malloc(4096 * sizeof(char*))) == NULL)
+    error_message("malloc");
+  all_to_zero(awns, 4096);
+  if ((i = read(0, awns, 4096)) == -1)
+    error_message("read");
+  my_putchar('\n');
+  awns[i - 1] = '\0';
+  free(awns);
+  return (atoi(awns));
+}
+
+static void	do_the_choose(t_list_rec **entree, t_list_rec **plat,
+			      t_list_rec **dessert, char **frigo)
+{
+  int		a;
+  char		**str2;
+
+  my_putstr("Entree disponible :\n");
+  str2 = choose_entree(entree, frigo);
+  display_choose(str2);
+  my_putstr("\n\n");
+  a = what_he_choose();
+  while (a < 0 || a > my_strlen2(str2) - 1)
+    {
+      my_putstr("Bad choice\n\n");
+      display_choose(str2);
+      my_putstr("\n\n");
+      a = what_he_choose();
+    }
+  my_putstr(str2[a]);
+  free_all(str2);
 }
 
 void		go_to_kitchen(char **frigo, char **recettes)
@@ -147,13 +185,13 @@ void		go_to_kitchen(char **frigo, char **recettes)
 
   check_rec(recettes);
   list_rec = do_list(recettes);
-  my_aff_list(&list_rec);
   entree = malloc_list(sizeof (t_list_rec));
   entree = NULL;
   dessert = malloc_list(sizeof (t_list_rec));
   dessert = NULL;
   plat = malloc_list(sizeof (t_list_rec));
   plat = NULL;
-  check_entree(&list_rec, &entree, &dessert, &plat);
-  sleep(3);
+  check_type(&list_rec, &dessert, &entree, &plat);
+  do_the_choose(&entree, &plat, &dessert, frigo);
+  sleep(1);
 }
