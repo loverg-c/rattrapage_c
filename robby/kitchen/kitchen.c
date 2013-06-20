@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:34:14 2013 clement lovergne
-** Last update Thu Jun 20 14:59:48 2013 clement lovergne
+** Last update Thu Jun 20 15:22:14 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -138,7 +138,7 @@ static void    	check_type(t_list_rec **rec, t_list_rec **list_dessert,
     }
 }
 
-static int	what_he_choose()
+static int	again_choose()
 {
   char		*awns;
   int		i;
@@ -150,30 +150,64 @@ static int	what_he_choose()
     error_message("read");
   my_putchar('\n');
   awns[i - 1] = '\0';
+  i = 0;
+  if (my_strcmp(awns, "yes") == 0)
+    i = 1;
+  if (my_strcmp(awns, "no") == 0)
+    i = 2;
   free(awns);
-  return (atoi(awns));
+  return (i);
 }
 
-static void	do_the_choose(t_list_rec **entree, t_list_rec **plat,
-			      t_list_rec **dessert, char **frigo)
+static int	what_he_choose()
+{
+  char		*awns;
+  int		i;
+  int		a;
+
+  a = 0;
+  if ((awns = malloc(4096 * sizeof(char*))) == NULL)
+    error_message("malloc");
+  all_to_zero(awns, 4096);
+  if ((i = read(0, awns, 4096)) == -1)
+    error_message("read");
+  my_putchar('\n');
+  awns[i - 1] = '\0';
+  i = 0;
+  while (awns[i] && a != -1)
+    {
+      if (awns[i] > '9' || awns[i] < '0')
+	a = -1;
+      i++;
+    }
+  if (a != -1)
+    a = atoi(awns);
+  free(awns);
+  return (a);
+}
+
+static int	do_the_choose(char **str)
 {
   int		a;
-  char		**str2;
 
-  my_putstr("Entree disponible :\n");
-  str2 = choose_entree(entree, frigo);
-  display_choose(str2);
-  my_putstr("\n\n");
   a = what_he_choose();
-  while (a < 0 || a > my_strlen2(str2) - 1)
+  while (a < 0 || a > my_strlen2(str) - 1)
     {
       my_putstr("Bad choice\n\n");
-      display_choose(str2);
+      display_choose(str);
       my_putstr("\n\n");
       a = what_he_choose();
     }
-  my_putstr(str2[a]);
-  free_all(str2);
+  my_putstr("You choose : ");
+  my_putstr(str[a]);
+  my_putstr("\n\n");
+  a = 0;
+  while (a == 0)
+    {
+      my_putstr("Do you want to change it ? (yes or no)\n");
+      a = again_choose();
+    }
+  return (a);
 }
 
 void		go_to_kitchen(char **frigo, char **recettes)
@@ -182,7 +216,10 @@ void		go_to_kitchen(char **frigo, char **recettes)
   t_list_rec	*entree;
   t_list_rec	*dessert;
   t_list_rec	*plat;
+  int		again;
+  char		**str;
 
+  again = 1;
   check_rec(recettes);
   list_rec = do_list(recettes);
   entree = malloc_list(sizeof (t_list_rec));
@@ -192,6 +229,14 @@ void		go_to_kitchen(char **frigo, char **recettes)
   plat = malloc_list(sizeof (t_list_rec));
   plat = NULL;
   check_type(&list_rec, &dessert, &entree, &plat);
-  do_the_choose(&entree, &plat, &dessert, frigo);
+  while (again == 1)
+    {
+      str = choose_entree(&entree, frigo);
+      my_putstr("Entree disponible :\n");
+      display_choose(str);
+      my_putstr("\n\n");
+      again = do_the_choose(str);
+    }
+  free_all(str);
   sleep(1);
 }
