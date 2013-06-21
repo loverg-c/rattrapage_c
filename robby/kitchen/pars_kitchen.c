@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 12:14:35 2013 clement lovergne
-** Last update Wed Jun 19 13:46:11 2013 clement lovergne
+** Last update Fri Jun 21 14:16:43 2013 clement lovergne
 */
 
 #include	<unistd.h>
@@ -19,7 +19,7 @@ char		*copy_afterpc(int *j, char *recettes)
   char		*afterpc;
 
   i = 0;
-  if ((afterpc = malloc(my_strlen(recettes) - *j)) == NULL)
+  if ((afterpc = malloc(my_strlen(recettes) - *j + 1)) == NULL)
     error_message("malloc");
   while (recettes[*j])
     {
@@ -52,6 +52,8 @@ static int	check_afterpcomakitchen(char *recettes, int *j)
 	    error_message(": In frigo/recettes_Robby: mistake after a \';\'");
 	  i++;
 	}
+      if (atoi(afterpc) <= 0)
+	error_message("frigo : one ingredient is null or neg");
     }
   else
     count = 1;
@@ -63,6 +65,7 @@ void		check_validfrigo(char **frigo)
 {
   int		i;
   int		j;
+  int		a;
 
   i = -1;
   while (++i < my_strlen2(frigo) && frigo[i][0])
@@ -72,6 +75,13 @@ void		check_validfrigo(char **frigo)
 	error_message(" : In frigo_Robby : mistake with \';\'");
       j = go_to_pc(frigo[i]) + 1;
      check_afterpcomakitchen(frigo[i], &j);
+     a = 0;
+     while (a < my_strlen2(frigo) && frigo[a][0])
+       {
+	 if (my_strncmp(frigo[i], frigo[a], j) == 0 && a != i)
+	    error_message("frigo : 2 * the same ingredient (add them between)");
+	 a++;
+       }
     }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Thu Jun 20 13:43:14 2013 clement lovergne
-** Last update Thu Jun 20 14:49:11 2013 clement lovergne
+** Last update Thu Jun 20 19:08:39 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -29,7 +29,7 @@ void		display_choose(char **choose)
     }
 }
 
-static int	my_strncmp(char *str, char *cmp, int t)
+int		my_strncmp(char *str, char *cmp, int t)
 {
   int		i;
 
@@ -60,7 +60,7 @@ static int	search_and_count(char *ingredient, char **frigo)
 	  j2 = go_to_pc(frigo[i]) + 1;
 	  afterpc1 = copy_afterpc(&j1, ingredient);
 	  afterpc2 = copy_afterpc(&j2, frigo[i]);
-	  if (atoi(afterpc1) < atoi(afterpc2))
+	  if (atoi(afterpc1) <= atoi(afterpc2))
 	    return (1);
 	}
       i++;
@@ -98,8 +98,11 @@ char		**choose_entree(t_list_rec **entree, char **frigo)
 	choose = my_copy_line(choose, elem->recettes);
       elem = elem->next;
     }
+  elem = *entree;
   if (choose[0] == NULL)
-    error_message("recettes : i havn't got the ingredients for any entree");
-  my_putstr("Entree availaible  : ");
+    { 
+      my_putstr("Sorry I havn't ingredient for do : ");
+      my_putstr(elem->type);
+    }
   return (choose);
 }

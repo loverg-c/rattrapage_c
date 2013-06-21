@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Thu Jun 20 14:49:10 2013 clement lovergne
+** Last update Fri Jun 21 13:58:42 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -42,7 +42,7 @@ void		my_robby(int*, t_vaccum*);
 int		search_o(char**);
 void		check_pcoma(char**);
 void		check_all_number(char*);
-void		go_to_kitchen(char **, char**);
+void		go_to_kitchen(t_file*, t_all*);
 void		check_validrecette(char**);
 void		check_validfrigo(char**);
 void		pars_kitchen(t_file*);
@@ -52,5 +52,10 @@ int		go_to_pc(char*);
 void		*malloc_list(size_t);
 char		**choose_entree(t_list_rec**, char**);
 void		display_choose(char**);
+int		my_strncmp(char*, char*, int);
+t_list_rec	*do_list(char**);
+void		check_rec(char**);
+void    	check_type(t_list_rec**, t_list_rec**,
+			   t_list_rec**, t_list_rec**);
 
 #endif		/* FONCTION_H_ */

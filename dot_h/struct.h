@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 18:49:36 2013 clement lovergne
-** Last update Tue Jun 18 15:27:35 2013 clement lovergne
+** Last update Thu Jun 20 19:36:11 2013 clement lovergne
 */
 
 #ifndef		STRUCT_H_
@@ -49,5 +49,13 @@ typedef struct	s_list_rec
   char		**ingredient;
   struct s_list_rec	*next;
 }		t_list_rec;
+
+typedef struct		s_all
+{
+  struct s_list_rec	*entree;
+  struct s_list_rec	*plat;
+  struct s_list_rec	*dessert;
+  struct s_list_rec	*list_rec;
+}			t_all;
 
 #endif		/* STRUCT_H_ */

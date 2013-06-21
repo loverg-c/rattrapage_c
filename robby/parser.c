@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 19:34:26 2013 clement lovergne
-** Last update Wed Jun 19 13:47:53 2013 clement lovergne
+** Last update Fri Jun 21 14:09:49 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -61,7 +61,7 @@ void		pars_tel(t_file *file)
       while (j < my_strlen2(file->com))
 	{
 	  if (my_strcmp(file->com[i], file->com[j]) == 0 && i != j)
-	    error_message("file : 2 * the same command");
+	    error_message("phone : 2 * the same command");
 	  j++;
 	}
       i++;

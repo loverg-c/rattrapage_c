@@ -5,9 +5,10 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 11:34:14 2013 clement lovergne
-** Last update Thu Jun 20 15:22:14 2013 clement lovergne
+** Last update Fri Jun 21 14:00:00 2013 clement lovergne
 */
 
+#include	<string.h>
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	<unistd.h>
@@ -23,25 +24,7 @@ int		go_to_pc(char *str)
   return (i);
 }
 
-/*static void	my_aff_list(t_list_rec **list_rec)
-{
-  t_list_rec *elem;
-
-  elem = *list_rec;
-  while (elem != NULL)
-    {
-      my_putstr("recettes   : ");
-      my_putstr(elem->recettes);
-      my_putstr(" - ");
-      my_putstr(elem->type);
-      my_putstr("\ningredients : ");
-      my_putstr2(elem->ingredient);
-      my_putchar('\n');
-      elem = elem->next;
-    }
-    }*/
-
-static t_list_rec	*do_list(char **recettes)
+t_list_rec	*do_list(char **recettes)
 {
   t_list_rec	*list_rec;
   int		i;
@@ -65,7 +48,7 @@ static t_list_rec	*do_list(char **recettes)
   return (list_rec);
 }
 
-static void	check_rec(char **rec)
+void		check_rec(char **rec)
 {
   int		i;
   int		j;
@@ -92,6 +75,7 @@ static void	check_rec(char **rec)
 	}
       i++;
     }
+  free(afterpc);
 }
 
 static void		stock_type(t_list_rec **rec, t_list_rec **list_entree, int j)
@@ -116,7 +100,7 @@ static void		stock_type(t_list_rec **rec, t_list_rec **list_entree, int j)
   *list_entree = elem2;
 }
 
-static void    	check_type(t_list_rec **rec, t_list_rec **list_dessert,
+void    	check_type(t_list_rec **rec, t_list_rec **list_dessert,
 			      t_list_rec **list_entree, t_list_rec **list_plat)
 {
   t_list_rec	*elem;
@@ -201,42 +185,141 @@ static int	do_the_choose(char **str)
   my_putstr("You choose : ");
   my_putstr(str[a]);
   my_putstr("\n\n");
-  a = 0;
-  while (a == 0)
+  return (a);
+}
+
+static int	choose_this(t_list_rec **entree, char **frigo, char **str)
+{
+  t_list_rec	*elem;
+  int		a;
+
+  a = -1;
+  elem = *entree;
+  if (str[0])
     {
-      my_putstr("Do you want to change it ? (yes or no)\n");
-      a = again_choose();
+      my_putstr(elem->type);
+      my_putstr(" availible :\n");
+      display_choose(str);
+      my_putstr("\n\n");
+      a = do_the_choose(str);
     }
   return (a);
 }
 
-void		go_to_kitchen(char **frigo, char **recettes)
+static void	sub(char *ingredient, char **frigo, t_list_rec **recette)
 {
-  t_list_rec	*list_rec;
-  t_list_rec	*entree;
-  t_list_rec	*dessert;
-  t_list_rec	*plat;
-  int		again;
-  char		**str;
+  int		i;
+  char		*afterpc1;
+  int		j1;
+  int		a;
+  t_list_rec	*elem;
+  int		b;
 
-  again = 1;
-  check_rec(recettes);
-  list_rec = do_list(recettes);
-  entree = malloc_list(sizeof (t_list_rec));
-  entree = NULL;
-  dessert = malloc_list(sizeof (t_list_rec));
-  dessert = NULL;
-  plat = malloc_list(sizeof (t_list_rec));
-  plat = NULL;
-  check_type(&list_rec, &dessert, &entree, &plat);
-  while (again == 1)
+  elem = *recette;
+  while (my_strncmp(ingredient, elem->recettes, go_to_pc(ingredient)) != 0)
+    elem = elem->next; 
+  b = 0;
+  while (elem->ingredient[b])
     {
-      str = choose_entree(&entree, frigo);
-      my_putstr("Entree disponible :\n");
-      display_choose(str);
-      my_putstr("\n\n");
-      again = do_the_choose(str);
+      i = 0;
+      while (frigo[i] && frigo[i][0])
+	{
+	  if (my_strncmp(elem->ingredient[b], frigo[i], go_to_pc(elem->ingredient[b])) == 0)
+	    {
+	      j1 = go_to_pc(elem->ingredient[b]) + 1;
+	      afterpc1 = copy_afterpc(&j1, elem->ingredient[b]);
+	      a = my_strlen(afterpc1) - 1;
+	      j1 = my_strlen(frigo[i]) - 1;
+	      while (a >= 0)
+		{
+		  if (afterpc1[a] > '9')
+		    {
+		      frigo[i][j1] -= 1;
+		      afterpc1[a] -= 10;
+		    }
+		  if (frigo[i][j1] - afterpc1[a] < 0)
+		    {
+		      frigo[i][j1] += 10;
+		      frigo[i][j1 - 1] -= 1;
+		    }
+		  frigo[i][j1] -= afterpc1[a];
+		  frigo[i][j1] += 48;
+		  j1--;
+		  a--;
+		}
+	    }
+	  i++;
+	}
+      b++;
+    }
+  free(afterpc1);
+}
+
+static int	menu2(t_list_rec **entree, t_list_rec **plat,
+		      t_list_rec **dessert, char **frigo)
+{
+  char		**str;
+  int		again;
+
+  str = choose_entree(entree, frigo);
+  again = choose_this(entree, frigo, str);
+  if (again != -1)
+    sub(str[again], frigo, entree);
+  str = choose_entree(plat, frigo);
+  again = choose_this(plat, frigo, str);
+  if (again != -1)
+    sub(str[again], frigo, plat);
+  str = choose_entree(dessert, frigo);
+  again = choose_this(dessert, frigo, str);
+  if (again != -1)
+    sub(str[again], frigo, dessert);
+  again = 0;
+  while (again == 0)
+    {
+      my_putstr("\n\nDo you want to change it ? (yes or no)\n");
+      again = again_choose();
     }
   free_all(str);
+  return (again);
+}
+
+static char	**my_copy(char **frigo)
+{
+  int		i;
+  char		**tmp;
+
+  i = 0;
+  if ((tmp = malloc((my_strlen2(frigo) + 1) * sizeof(char*))) == NULL)
+    error_message("malloc");
+  tmp[my_strlen2(frigo)] = NULL;
+  while (i < my_strlen2(frigo) + 1)
+    {
+      if ((tmp[i] = malloc((my_strlen(frigo[i]) + 1) * sizeof(char))) == NULL)
+	  error_message("malloc");
+      i++;
+    }
+  i = 0;
+  while (frigo[i][0] && frigo[i])
+    {
+      tmp[i] = strdup(frigo[i]);
+      i++;
+    }
+  tmp[i] = NULL;
+  return (tmp);
+}
+
+void		go_to_kitchen(t_file *file, t_all *all)
+{
+  int		again;
+  char		**tmp1;
+
+  tmp1 = NULL;
+  again = 0;
+  while (again == 0 || again == 1)
+    {
+      tmp1 = my_copy(file->frigo);
+      again = menu2(&all->entree, &all->plat, &all->dessert, tmp1);
+      free_all(tmp1);
+    }
   sleep(1);
 }
