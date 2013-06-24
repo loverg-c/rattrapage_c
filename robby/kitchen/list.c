@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 13:26:18 2013 clement lovergne
-** Last update Fri Jun 21 13:44:48 2013 clement lovergne
+** Last update Sun Jun 23 20:37:49 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -40,6 +40,20 @@ static char	*copy_recette(char **str, int *i, int *j)
   return (recette);
 }
 
+static char	*copy_ingredient(char **str, int *i, int *j, char **afterpc)
+{
+  char		*res;
+
+  res = str[*i];
+  *i += 1;
+  if (str[*i] && str[*i][0] != '\0')
+    {
+      *j = go_to_pc(str[*i]) + 1;
+      *afterpc = copy_afterpc(j, str[*i]);
+    }
+  return (res);
+}
+
 void		my_putinlist(t_list_rec **list, char **str, int *i)
 {
   t_list_rec	*elem;
@@ -59,20 +73,36 @@ void		my_putinlist(t_list_rec **list, char **str, int *i)
     {
       j = go_to_pc(str[*i]);
       afterpc = copy_afterpc(&j, str[*i]);
-      while (my_strcmp(afterpc, "entree") != 0 &&
+      while (my_strcmp(afterpc, "entree") != 0 && str[*i] &&
 	     my_strcmp(afterpc, "plat") != 0 &&
-	     my_strcmp(afterpc, "dessert") != 0 && str[*i] && str[*i][0] != '\0')
-	{
-	  res = my_copy_line(res, str[*i]);   
-	  *i += 1;
-	  if (str[*i] && str[*i][0] != '\0')
-	    {
-	      j = go_to_pc(str[*i]) + 1;
-	      afterpc = copy_afterpc(&j, str[*i]);
-	    }
-	}
+	     my_strcmp(afterpc, "dessert") != 0 && str[*i][0] != '\0')
+	res = my_copy_line(res, copy_ingredient(str, i, &j, &afterpc));
     }
   elem->ingredient = res;
   elem->next = *list;
   *list = elem;
+}
+
+t_list_rec	*do_list(char **recettes)
+{
+  t_list_rec	*list_rec;
+  int		i;
+  int		j;
+  char		*afterpc;
+
+  i = 0;
+  list_rec = NULL;
+  while (recettes[i] && recettes[i][0] != '\0')
+    {
+      j = go_to_pc(recettes[i]);
+      j++;
+      afterpc = copy_afterpc(&j, recettes[i]);
+      if (my_strcmp(afterpc, "entree") == 0 ||
+	  my_strcmp(afterpc, "plat") == 0 ||
+	  my_strcmp(afterpc, "dessert") == 0)
+	my_putinlist(&list_rec, recettes, &i);
+      else
+	i++;
+    }
+  return (list_rec);
 }

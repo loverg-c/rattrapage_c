@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:25:57 2013 clement lovergne
-** Last update Fri Jun 21 14:22:18 2013 clement lovergne
+** Last update Mon Jun 24 14:11:56 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -27,13 +27,7 @@ static void	display(int *error, char *awns)
   my_putstr("3 - Kitchen\n\n4 - Shutdown Robby\n\n");
 }
 
-static void	shut_down()
-{
-  my_putstr("Good Bye !\n\n");
-  exit(0);
-}
-
-static void	menu(char *awns, t_file *file, t_all *all)
+static int	menu(char *awns, t_file *file, t_all *all)
 {
   int		i;
   int		error;
@@ -54,9 +48,30 @@ static void	menu(char *awns, t_file *file, t_all *all)
       else if (my_strcmp(awns, "3") == 0)
 	go_to_kitchen(file, all);
       else if (my_strcmp(awns, "4") == 0)
-	shut_down();
+	return (1);
       else
 	error = 1;
+    }
+  return (0);
+}
+
+static void	check_same_ingredient(char **ingredient)
+{
+  int		a;
+  int		b;
+
+  a = 0;
+  while (ingredient[a])
+    {
+      b = 0;
+      while (ingredient[b])
+	{
+	  if (my_strncmp(ingredient[a], ingredient[b],
+			 go_to_pc(ingredient[a])) == 0 && a != b)
+	    error_message("recettes : 2 * the same ingredient in one recette");
+	  b++;
+	}
+      a++;
     }
 }
 
@@ -66,14 +81,11 @@ static void	check_same(t_list_rec	**list)
   t_list_rec	*elem2;
   int		i;
   int		j;
-  int		a;
-  int		b;
 
   i = 0;
   elem1 = *list;
   while (elem1 != NULL)
     {
-      a = 0;
       j = 0;
       elem2 = *list;
       while (elem2 != NULL)
@@ -83,23 +95,13 @@ static void	check_same(t_list_rec	**list)
 	  j++;
 	  elem2 = elem2->next;
 	}
-      while (elem1->ingredient[a])
-	{
-	  b = 0;
-	  while (elem1->ingredient[b])
-	    {
-	      if (my_strncmp(elem1->ingredient[a], elem1->ingredient[b], go_to_pc(elem1->ingredient[a])) == 0 && a != b)
-		error_message("recettes : 2 * the same ingredient in one recette");
-	      b++;
-	    }
-	  a++;
-	}
+      check_same_ingredient(elem1->ingredient);
       i++;
       elem1 = elem1->next;
     }
 }
 
-static void	robby()
+int		main()
 {
   char		*awns;
   t_file	file;
@@ -121,16 +123,9 @@ static void	robby()
   check_same(&all.list_rec);
   check_type(&all.list_rec, &all.dessert, &all.entree, &all.plat);
   menu(awns, &file, &all);
+  my_putstr("Good Bye !\n\n");
   free(awns);
-  free_all(file.com);
-  free_all(file.wtd);
-  free_all(file.mouv_dab);
   free_all(file.frigo);
   free_all(file.recettes);
-}
-
-int		main()
-{
-  robby();
   return (0);
 }

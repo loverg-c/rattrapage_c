@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Thu Jun 20 13:43:14 2013 clement lovergne
-** Last update Thu Jun 20 19:08:39 2013 clement lovergne
+** Last update Sun Jun 23 16:02:36 2013 clement lovergne
 */
 
 #include	<stdlib.h>
@@ -100,7 +100,7 @@ char		**choose_entree(t_list_rec **entree, char **frigo)
     }
   elem = *entree;
   if (choose[0] == NULL)
-    { 
+    {
       my_putstr("Sorry I havn't ingredient for do : ");
       my_putstr(elem->type);
     }

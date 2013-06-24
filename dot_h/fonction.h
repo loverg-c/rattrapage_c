@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 10:29:36 2013 clement lovergne
-** Last update Fri Jun 21 13:58:42 2013 clement lovergne
+** Last update Mon Jun 24 14:30:32 2013 clement lovergne
 */
 
 #ifndef		FONCTION_H_
@@ -57,5 +57,17 @@ t_list_rec	*do_list(char**);
 void		check_rec(char**);
 void    	check_type(t_list_rec**, t_list_rec**,
 			   t_list_rec**, t_list_rec**);
+int		again_choose();
+int		menu2(t_list_rec**, t_list_rec**, t_list_rec**, char**);
+void		sub(char*, char**, t_list_rec**);
+int		what_he_choose();
+int		do_the_choose(char**);
+int		choose_this(t_list_rec**, char**, char**);
+void		display_finnish(char**, int*);
+void		sub_copy_choose(char*, t_list_rec**, char**, char**);
+int		set_copy_nb(int*, int*, int*, int*);
+void		comp_and_set(int*, int*);
+char		**malloc_room(char**);
+char		**draw_room(t_vaccum*);
 
 #endif		/* FONCTION_H_ */

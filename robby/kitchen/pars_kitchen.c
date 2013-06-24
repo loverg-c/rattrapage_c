@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 12:14:35 2013 clement lovergne
-** Last update Fri Jun 21 14:16:43 2013 clement lovergne
+** Last update Sun Jun 23 16:30:44 2013 clement lovergne
 */
 
 #include	<unistd.h>
@@ -79,7 +79,7 @@ void		check_validfrigo(char **frigo)
      while (a < my_strlen2(frigo) && frigo[a][0])
        {
 	 if (my_strncmp(frigo[i], frigo[a], j) == 0 && a != i)
-	    error_message("frigo : 2 * the same ingredient (add them between)");
+	    error_message("frigo: 2 * the same ingredient(add them between)");
 	 a++;
        }
     }

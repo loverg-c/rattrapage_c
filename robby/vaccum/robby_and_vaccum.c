@@ -5,20 +5,13 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 23:33:07 2013 clement lovergne
-** Last update Wed Jun 19 13:33:50 2013 clement lovergne
+** Last update Mon Jun 24 14:15:24 2013 clement lovergne
 */
 
 #include	<unistd.h>
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	"../../dot_h/fonction.h"
-
-static int	set_copy_nb(int *x1, int *xc, int *y1, int *yc)
-{
-  *x1 = *xc;
-  *y1 = *yc;
-  return (1);
-}
 
 static int	check_mvt(t_vaccum *vaccum, int test_mvt, int *xs, int *ys)
 {
@@ -63,14 +56,6 @@ static void	calc_where(t_vaccum *vaccum, int *x, int *y, int i)
       while (check_mvt(vaccum, test_mvt, x, y) == 0)
 	test_mvt++;
     }
-}
-
-static void	comp_and_set(int *v1, int *v2)
-{
-  if ((*v1 - *v2) < 0)
-    *v1 += 1;
-  else
-    *v1 -= 1;
 }
 
 static void	same_axes(t_vaccum *vaccum, int *cible_y, int *cible_x)

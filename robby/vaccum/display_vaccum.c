@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Mon Jun 17 20:57:19 2013 clement lovergne
-** Last update Wed Jun 19 12:53:36 2013 clement lovergne
+** Last update Mon Jun 24 14:21:42 2013 clement lovergne
 */
 
 #include	<stdio.h>
@@ -29,7 +29,7 @@ void		replace_maps(char **room, t_vaccum *vaccum)
   my_putstr("Nombre de cycle : ");
   my_putnbr(vaccum->nb_cycle);
   vaccum->nb_cycle++;
-  usleep(100000);
+  usleep(70000);
 }
 
 static void	move_my_dab(t_vaccum *vaccum, int x, int y)
