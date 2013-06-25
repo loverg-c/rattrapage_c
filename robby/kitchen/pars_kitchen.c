@@ -5,7 +5,7 @@
 ** Login   <loverg_c@epitech.net>
 ** 
 ** Started on  Tue Jun 18 12:14:35 2013 clement lovergne
-** Last update Sun Jun 23 16:30:44 2013 clement lovergne
+** Last update Mon Jun 24 15:18:10 2013 clement lovergne
 */
 
 #include	<unistd.h>
@@ -95,7 +95,6 @@ void		check_validrecette(char **recettes)
   i = -1;
   while (++i < my_strlen2(recettes) && recettes[i][0])
     {
-      my_putchar('\n');
       if (count_pointcoma(recettes[i]) != 1)
 	error_message(" : In recettes_Robby : mistake with \';\'");
       j = go_to_pc(recettes[i]) + 1;
